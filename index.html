@@ -1,29 +1,27 @@
-
 HTML
 <!DOCTYPE html>
 <html lang="es">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>kattia.me</title>
+  <title>Kattia | Visual Practice</title>
   <style>
-    /* Reset total de márgenes, rellenos y bordes */
     *, *::before, *::after {
-      box-sizing: border-box;
       margin: 0;
       padding: 0;
+      box-sizing: border-box;
     }
 
     html, body {
       width: 100vw;
       height: 100vh;
-      background-color: #000;
       overflow: hidden;
+      background-color: #000;
       position: relative;
     }
 
-    /* Centrado matemático absoluto respecto al centro del navegador */
-    img, video {
+    /* Centrado matemático absoluto para evitar desplazamientos */
+    video {
       position: absolute;
       top: 50%;
       left: 50%;
@@ -33,12 +31,55 @@ HTML
       object-fit: contain;
       display: block;
     }
+
+    /* Botón flotante para activar el sonido */
+    #sound-btn {
+      position: absolute;
+      bottom: 25px;
+      right: 25px;
+      background: rgba(0, 0, 0, 0.5);
+      border: 1px solid rgba(255, 255, 255, 0.4);
+      color: #fff;
+      padding: 10px 16px;
+      border-radius: 30px;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      font-size: 13px;
+      letter-spacing: 1px;
+      cursor: pointer;
+      backdrop-filter: blur(5px);
+      z-index: 10;
+      transition: all 0.3s ease;
+    }
+
+    #sound-btn:hover {
+      background: rgba(255, 255, 255, 0.2);
+    }
   </style>
 </head>
 <body>
 
-  <!-- Reemplaza "tu-imagen.jpg" por el nombre de tu archivo -->
-  <img src="tu-imagen.jpg" alt="Portada kattia.me">
+  <video id="myVideo" autoplay loop muted playsinline webkit-playsinline preload="auto">
+    <source src="video.mp4" type="video/mp4">
+    Tu navegador no soporta reproducción de vídeo.
+  </video>
+
+  <!-- Botón interactivo de audio -->
+  <button id="sound-btn">SOUND OFF</button>
+
+  <script>
+    const video = document.getElementById('myVideo');
+    const soundBtn = document.getElementById('sound-btn');
+
+    soundBtn.addEventListener('click', () => {
+      if (video.muted) {
+        video.muted = false;
+        soundBtn.textContent = 'SOUND ON';
+      } else {
+        video.muted = true;
+        soundBtn.textContent = 'SOUND OFF';
+      }
+    });
+  </script>
 
 </body>
 </html>
