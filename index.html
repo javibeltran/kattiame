@@ -3,7 +3,7 @@ HTML
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>Kattia | Visual Practice</title>
   <style>
     *, *::before, *::after {
@@ -13,14 +13,14 @@ HTML
     }
 
     html, body {
-      width: 100vw;
-      height: 100vh;
+      width: 100%;
+      height: 100%;
       overflow: hidden;
       background-color: #000;
       position: relative;
     }
 
-    /* Centrado matemático absoluto para evitar desplazamientos */
+    /* Centrado matemático absoluto del vídeo */
     video {
       position: absolute;
       top: 50%;
@@ -32,13 +32,13 @@ HTML
       display: block;
     }
 
-    /* Botón flotante para activar el sonido */
+    /* Botón flotante corregido para móviles */
     #sound-btn {
-      position: absolute;
-      bottom: 25px;
+      position: fixed; /* 'fixed' evita que se mueva al hacer scroll en móvil */
+      bottom: calc(25px + env(safe-area-inset-bottom)); /* Respeta el margen de la barra del móvil */
       right: 25px;
-      background: rgba(0, 0, 0, 0.5);
-      border: 1px solid rgba(255, 255, 255, 0.4);
+      background: rgba(0, 0, 0, 0.7); /* Algo más oscuro para mejorar legibilidad */
+      border: 1px solid rgba(255, 255, 255, 0.5);
       color: #fff;
       padding: 10px 16px;
       border-radius: 30px;
@@ -47,12 +47,13 @@ HTML
       letter-spacing: 1px;
       cursor: pointer;
       backdrop-filter: blur(5px);
-      z-index: 10;
-      transition: all 0.3s ease;
+      -webkit-backdrop-filter: blur(5px);
+      z-index: 9999; /* Asegura que esté SIEMPRE por encima de todo */
+      -webkit-tap-highlight-color: transparent;
     }
 
-    #sound-btn:hover {
-      background: rgba(255, 255, 255, 0.2);
+    #sound-btn:active {
+      transform: scale(0.95);
     }
   </style>
 </head>
