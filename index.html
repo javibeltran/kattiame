@@ -1,12 +1,14 @@
+Aquí tienes el archivo index.html completo y consolidado. Incluye el fondo blanco para eliminar las franjas negras externas, el botón de sonido estilizado (más pequeño, minimalista y transparente), y las etiquetas necesarias para cargar el icono icon.png:
+
 HTML
 <!DOCTYPE html>
 <html lang="es">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>kattia | visual practice</title>
+  <title>Kattia | Visual Practice</title>
   
-<!-- Bloque de Favicon Multi-dispositivo -->
+  <!-- Bloque de Favicon Multi-dispositivo -->
   <link rel="icon" type="image/png" sizes="32x32" href="icon.png?v=3">
   <link rel="icon" type="image/png" sizes="16x16" href="icon.png?v=3">
   <link rel="shortcut icon" href="icon.png?v=3" type="image/x-icon">
@@ -23,11 +25,11 @@ HTML
       width: 100%;
       height: 100%;
       overflow: hidden;
-      background-color: #000;
+      background-color: #ffffff; /* Franjas y fondo general en blanco */
       position: relative;
     }
 
-    /* Vídeo centrado */
+    /* Vídeo centrado sobre fondo blanco */
     video {
       position: absolute;
       top: 50%;
@@ -38,30 +40,36 @@ HTML
       object-fit: contain;
       display: block;
       z-index: 1;
+      background-color: #ffffff; /* Marco del reproductor en blanco */
     }
 
-    /* Botón rescatado: elevado y forzado al frente */
+    /* Botón minimalista: más pequeño, translúcido y con tipografía fina */
     #sound-btn {
       position: fixed;
-      bottom: 45px; /* Subido a 45px para que la barra del móvil jamás lo tape */
-      right: 20px;
-      background: rgba(0, 0, 0, 0.6);
-      border: 1px solid rgba(255, 255, 255, 0.5);
-      color: #fff;
-      padding: 10px 16px;
-      border-radius: 30px;
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-      font-size: 13px;
-      letter-spacing: 1px;
+      bottom: 35px;
+      right: 25px;
+      background: rgba(0, 0, 0, 0.25); /* Transparencia sutil */
+      border: 1px solid rgba(255, 255, 255, 0.35);
+      color: rgba(255, 255, 255, 0.9);
+      padding: 6px 12px; /* Tamaño compacto */
+      border-radius: 20px;
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Helvetica Neue", sans-serif;
+      font-size: 10px; /* Letra pequeña y estética */
+      font-weight: 400;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
       cursor: pointer;
-      backdrop-filter: blur(5px);
-      -webkit-backdrop-filter: blur(5px);
-      z-index: 999999; /* Máxima prioridad sobre el vídeo */
+      backdrop-filter: blur(8px); /* Desenfoque traslúcido */
+      -webkit-backdrop-filter: blur(8px);
+      z-index: 999999;
+      transition: all 0.3s ease;
       -webkit-tap-highlight-color: transparent;
     }
 
     #sound-btn:hover {
-      background: rgba(255, 255, 255, 0.2);
+      background: rgba(0, 0, 0, 0.5);
+      border-color: rgba(255, 255, 255, 0.7);
+      color: #ffffff;
     }
   </style>
 </head>
