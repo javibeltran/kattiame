@@ -3,42 +3,46 @@ HTML
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <title>Kattia | Visual Practice</title>
   <style>
-    *, *::before, *::after {
+    * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
     }
 
-    html, body {
+    body, html {
       width: 100%;
       height: 100%;
       overflow: hidden;
       background-color: #000;
-      position: relative;
     }
 
-    /* Centrado matemático absoluto del vídeo */
+    /* Contenedor principal a pantalla completa */
+    .video-container {
+      position: relative;
+      width: 100vw;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    /* Tu vídeo centrado */
     video {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
       max-width: 100%;
       max-height: 100%;
       object-fit: contain;
-      display: block;
     }
 
-    /* Botón flotante corregido para móviles */
+    /* Tu botón original exacto, adaptado para móviles */
     #sound-btn {
-      position: fixed; /* 'fixed' evita que se mueva al hacer scroll en móvil */
-      bottom: calc(25px + env(safe-area-inset-bottom)); /* Respeta el margen de la barra del móvil */
-      right: 25px;
-      background: rgba(0, 0, 0, 0.7); /* Algo más oscuro para mejorar legibilidad */
-      border: 1px solid rgba(255, 255, 255, 0.5);
+      position: absolute;
+      bottom: max(25px, env(safe-area-inset-bottom));
+      right: max(25px, env(safe-area-inset-right));
+      background: rgba(0, 0, 0, 0.5);
+      border: 1px solid rgba(255, 255, 255, 0.4);
       color: #fff;
       padding: 10px 16px;
       border-radius: 30px;
@@ -48,24 +52,27 @@ HTML
       cursor: pointer;
       backdrop-filter: blur(5px);
       -webkit-backdrop-filter: blur(5px);
-      z-index: 9999; /* Asegura que esté SIEMPRE por encima de todo */
+      z-index: 99;
+      transition: all 0.3s ease;
       -webkit-tap-highlight-color: transparent;
     }
 
-    #sound-btn:active {
-      transform: scale(0.95);
+    #sound-btn:hover {
+      background: rgba(255, 255, 255, 0.2);
     }
   </style>
 </head>
 <body>
 
-  <video id="myVideo" autoplay loop muted playsinline webkit-playsinline preload="auto">
-    <source src="video.mp4" type="video/mp4">
-    Tu navegador no soporta reproducción de vídeo.
-  </video>
+  <div class="video-container">
+    <video id="myVideo" autoplay loop muted playsinline webkit-playsinline preload="auto">
+      <source src="video.mp4" type="video/mp4">
+      Tu navegador no soporta reproducción de vídeo.
+    </video>
 
-  <!-- Botón interactivo de audio -->
-  <button id="sound-btn">SOUND OFF</button>
+    <!-- Botón de sonido original -->
+    <button id="sound-btn">SOUND OFF</button>
+  </div>
 
   <script>
     const video = document.getElementById('myVideo');
