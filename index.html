@@ -22,23 +22,34 @@
       width: 100%;
       height: 100%;
       overflow: hidden;
-      background-color: #ffffff;
+      background-color: #ffffff; /* Fondo blanco */
       position: relative;
     }
 
-    /* Vídeo forzado a ocupar la pantalla completa sin franjas */
+    /* Ajuste predeterminado para escritorio (PC) */
     video {
       position: absolute;
-      top: 0;
-      left: 0;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
       width: 100vw;
       height: 100vh;
-      object-fit: cover; /* Escala y cubre toda la pantalla eliminando franjas */
+      object-fit: cover; /* Mantiene pantalla completa en PC */
       display: block;
       z-index: 1;
+      background-color: #ffffff;
     }
 
-    /* Botón en blanco translúcido */
+    /* Regla exclusiva para MÓVILES (pantallas de hasta 767px) */
+    @media (max-width: 767px) {
+      video {
+        width: 100%;
+        height: 100%;
+        object-fit: contain; /* En móvil ajusta todo el vídeo sin cortar los lados */
+      }
+    }
+
+    /* Botón de sonido en blanco translúcido */
     #sound-btn {
       position: fixed;
       bottom: 35px;
