@@ -1,81 +1,47 @@
+Para centrar perfectamente una foto o vídeo en tu web y evitar que quede desplazada o movida hacia un lado, la forma más limpia y efectiva es utilizar CSS Flexbox en el archivo HTML o CSS de tu página.
+
+Sigue estos pasos según cómo tengas estructurada tu web:
+
+Opción A: Si usas una etiqueta <img> o <video> en tu HTML
+Añade (o modifica) el estilo CSS del contenedor y de la imagen/vídeo para asegurarte de que se alineen al centro absoluto de la pantalla:
+
 HTML
 <!DOCTYPE html>
 <html lang="es">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Kattia | Visual Practice</title>
+  <title>kattia.me</title>
   <style>
-    * {
+    /* 1. Quitamos los márgenes por defecto del navegador */
+    html, body {
       margin: 0;
       padding: 0;
-      box-sizing: border-box;
-    }
-
-    body, html {
       width: 100%;
       height: 100%;
-      overflow: hidden;
-      background-color: #000;
+      background-color: #000; /* Fondo negro para que combine con las franjas */
+      
+      /* 2. Flexbox para centrar todo en la pantalla */
       display: flex;
-      justify-content: center;
-      align-items: center;
+      justify-content: center; /* Centra horizontalmente */
+      align-items: center;     /* Centra verticalmente */
+      overflow: hidden;        /* Evita barras de desplazamiento innecesarias */
     }
 
-    video {
+    /* 3. Control para la imagen o vídeo */
+    img, video {
       max-width: 100%;
-      max-height: 100%;
-      object-fit: contain;
-    }
-
-    /* Botón flotante para activar el sonido */
-    #sound-btn {
-      position: absolute;
-      bottom: 25px;
-      right: 25px;
-      background: rgba(0, 0, 0, 0.5);
-      border: 1px solid rgba(255, 255, 255, 0.4);
-      color: #fff;
-      padding: 10px 16px;
-      border-radius: 30px;
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-      font-size: 13px;
-      letter-spacing: 1px;
-      cursor: pointer;
-      backdrop-filter: blur(5px);
-      z-index: 10;
-      transition: all 0.3s ease;
-    }
-
-    #sound-btn:hover {
-      background: rgba(255, 255, 255, 0.2);
+      max-height: 100vh;
+      object-fit: contain;    /* Mantiene la proporción sin deformarse */
+      display: block;
+      margin: auto;          /* Refuerzo de centrado */
     }
   </style>
 </head>
 <body>
 
-  <video id="myVideo" autoplay loop muted playsinline webkit-playsinline preload="auto">
-    <source src="video.mp4" type="video/mp4">
-    Tu navegador no soporta reproducción de vídeo.
-  </video>
-
-  <!-- Botón interactivo de audio -->
-  <button id="sound-btn">SOUND OFF</button>
-
-  <script>
-    const video = document.getElementById('myVideo');
-    const soundBtn = document.getElementById('sound-btn');
-
-    soundBtn.addEventListener('click', () => {
-      if (video.muted) {
-        video.muted = false;
-        soundBtn.textContent = 'SOUND ON';
-      } else {
-        video.muted = true;
-        soundBtn.textContent = 'SOUND OFF';
-      }
-    });
-  </script>
+  <!-- Tu imagen o vídeo aquí -->
+  <img src="tu-imagen.jpg" alt="Portada kattia.me">
 
 </body>
 </html>
