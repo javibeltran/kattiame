@@ -1,9 +1,3 @@
-Para centrar perfectamente una foto o vídeo en tu web y evitar que quede desplazada o movida hacia un lado, la forma más limpia y efectiva es utilizar CSS Flexbox en el archivo HTML o CSS de tu página.
-
-Sigue estos pasos según cómo tengas estructurada tu web:
-
-Opción A: Si usas una etiqueta <img> o <video> en tu HTML
-Añade (o modifica) el estilo CSS del contenedor y de la imagen/vídeo para asegurarte de que se alineen al centro absoluto de la pantalla:
 
 HTML
 <!DOCTYPE html>
@@ -13,34 +7,37 @@ HTML
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>kattia.me</title>
   <style>
-    /* 1. Quitamos los márgenes por defecto del navegador */
-    html, body {
+    /* Reset total de márgenes, rellenos y bordes */
+    *, *::before, *::after {
+      box-sizing: border-box;
       margin: 0;
       padding: 0;
-      width: 100%;
-      height: 100%;
-      background-color: #000; /* Fondo negro para que combine con las franjas */
-      
-      /* 2. Flexbox para centrar todo en la pantalla */
-      display: flex;
-      justify-content: center; /* Centra horizontalmente */
-      align-items: center;     /* Centra verticalmente */
-      overflow: hidden;        /* Evita barras de desplazamiento innecesarias */
     }
 
-    /* 3. Control para la imagen o vídeo */
+    html, body {
+      width: 100vw;
+      height: 100vh;
+      background-color: #000;
+      overflow: hidden;
+      position: relative;
+    }
+
+    /* Centrado matemático absoluto respecto al centro del navegador */
     img, video {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
       max-width: 100%;
-      max-height: 100vh;
-      object-fit: contain;    /* Mantiene la proporción sin deformarse */
+      max-height: 100%;
+      object-fit: contain;
       display: block;
-      margin: auto;          /* Refuerzo de centrado */
     }
   </style>
 </head>
 <body>
 
-  <!-- Tu imagen o vídeo aquí -->
+  <!-- Reemplaza "tu-imagen.jpg" por el nombre de tu archivo -->
   <img src="tu-imagen.jpg" alt="Portada kattia.me">
 
 </body>
